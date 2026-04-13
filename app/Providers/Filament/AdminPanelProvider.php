@@ -43,6 +43,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->navigationGroups(['Strony internetowe'])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\Filament\Clusters')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Website\Blogs\Schemas;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -20,9 +21,16 @@ class BlogForm
                     ->label('opis')
                     ->default(null)
                     ->columnSpanFull(),
-                Textarea::make('content')
-                    ->label('Zawartość')
-                    ->default(null)
+                RichEditor::make('content')
+                    ->toolbarButtons(([
+                        ['bold'],
+                        ['h1', 'h2', 'h3'],
+                        ['bulletList', 'orderedList'],
+                        ['textColor'],
+                        ['customBlocks']
+                    ]))
+                    ->activePanel('customBlocks')
+                    ->label("zawartość strony")
                     ->columnSpanFull(),
                 Select::make('author_id')
                     ->relationship('author', 'name')

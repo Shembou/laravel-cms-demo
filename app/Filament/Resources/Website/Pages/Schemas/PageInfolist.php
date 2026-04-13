@@ -12,20 +12,21 @@ class PageInfolist
     public static function configure(Schema $schema): Schema
     {
         $bgColor = Colors::BgPrimaryLight->value;
+
         return $schema
             ->components([
                 TextEntry::make('title')->label('tytuł'),
                 TextEntry::make('description')
                     ->placeholder('-')
                     ->label('opis'),
-                Section::make("Strona")
+                Section::make('Strona')
                     ->schema([
                         TextEntry::make('content')
                             ->placeholder('-')
                             ->hiddenLabel(true)
                             ->columnSpanFull()
                             ->hidden(fn ($record) => empty($record?->content))
-                            ->extraAttributes(['style' => "background-color: $bgColor; max-height:100vh; overflow-y:visible;"]),
+                            ->extraAttributes(['class' => 'bg-gray-50 dark:bg-gray-900 max-h-screen overflow-y-visible']),
                     ])->columnSpanFull(),
                 TextEntry::make('created_at')
                     ->dateTime()
