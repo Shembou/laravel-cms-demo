@@ -2,10 +2,11 @@
 
 namespace App\Filament\Widgets;
 
-use App\Filament\Resources\Website\Pages\PageResource;
+use App\Filament\Clusters\Settings\SettingsCluster;
+use App\Filament\Resources\Website\Authors\AuthorResource;
 use App\Filament\Resources\Website\Blogs\BlogResource;
 use App\Filament\Resources\Website\Categories\CategoryResource;
-use App\Filament\Resources\Website\Authors\AuthorResource;
+use App\Filament\Resources\Website\Pages\PageResource;
 use App\Filament\Resources\Website\Tags\TagResource;
 use Filament\Widgets\Widget;
 
@@ -13,7 +14,7 @@ class FeaturesOverview extends Widget
 {
     protected string $view = 'filament.widgets.features-overview';
 
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     protected static bool $isLazy = false;
 
@@ -62,6 +63,9 @@ class FeaturesOverview extends Widget
                 ['name' => 'Kategorie', 'description' => 'Zarządzaj kategoriami bloga', 'url' => CategoryResource::getUrl('index'), 'resource' => 'Categories'],
                 ['name' => 'Autorzy', 'description' => 'Zarządzaj autorami bloga', 'url' => AuthorResource::getUrl('index'), 'resource' => 'Authors'],
                 ['name' => 'Tagi', 'description' => 'Zarządzaj tagami bloga', 'url' => TagResource::getUrl('index'), 'resource' => 'Tags'],
+                ['name' => 'Nagłówek', 'description' => 'Konfiguruj nagłówek strony', 'url' => SettingsCluster::getUrl(['header']), 'resource' => 'Header'],
+                ['name' => 'Stopka', 'description' => 'Konfiguruj stopkę strony', 'url' => SettingsCluster::getUrl(['footer']), 'resource' => 'Footer'],
+                ['name' => 'Metadane Open Graph', 'description' => 'Konfiguruj metadane Open Graph', 'url' => SettingsCluster::getUrl(['open-graph-metadata']), 'resource' => 'OpenGraph'],
             ],
         ];
     }

@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -15,9 +16,16 @@ class BlogsTable
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('slug')
+                    ->label('Link')
                     ->searchable(),
+
+                IconColumn::make('is_published')
+                    ->label('Opublikowana')
+                    ->boolean(),
+
                 TextColumn::make('author.name')
+                    ->label('Autor')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

@@ -16,6 +16,7 @@ class AuthorTable
     {
         return $table
             ->columns([
+                ImageColumn::make('image'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('surname')
@@ -23,7 +24,6 @@ class AuthorTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                ImageColumn::make('image'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

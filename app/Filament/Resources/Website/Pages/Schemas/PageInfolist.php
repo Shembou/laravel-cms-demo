@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Website\Pages\Schemas;
 
 use App\Enums\Colors;
+use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -16,6 +17,10 @@ class PageInfolist
         return $schema
             ->components([
                 TextEntry::make('title')->label('tytuł'),
+                TextEntry::make('slug')->label('link'),
+                IconEntry::make('is_published')
+                    ->label('Czy jest opublikowana')
+                    ->boolean(),
                 TextEntry::make('description')
                     ->placeholder('-')
                     ->label('opis'),

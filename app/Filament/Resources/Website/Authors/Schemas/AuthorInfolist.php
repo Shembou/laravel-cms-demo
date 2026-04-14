@@ -12,14 +12,14 @@ class AuthorInfolist
     {
         return $schema
             ->components([
+                ImageEntry::make('image')
+                    ->placeholder('-'),
                 TextEntry::make('name')->label(
                     'Imię'
                 ),
                 TextEntry::make('surname')->label('nazwisko'),
                 TextEntry::make('email')
                     ->label('Email address'),
-                ImageEntry::make('image')
-                    ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

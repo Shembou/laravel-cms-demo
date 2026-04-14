@@ -21,15 +21,15 @@ class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Strony internetowe';
+    protected static string|UnitEnum|null $navigationGroup = 'Strony internetowe';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
 
     protected static ?string $recordTitleAttribute = 'Blog';
 
-    protected static ?string $modelLabel = "Blog";
+    protected static ?string $modelLabel = 'Blog';
 
-    protected static ?string $pluralModelLabel = "Blog";
+    protected static ?string $pluralModelLabel = 'Blog';
 
     public static function form(Schema $schema): Schema
     {

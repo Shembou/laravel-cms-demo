@@ -21,15 +21,15 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static string | UnitEnum | null $navigationGroup = 'Strony internetowe';
+    protected static string|UnitEnum|null $navigationGroup = 'Strony internetowe';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 
     protected static ?string $recordTitleAttribute = 'Kategorię';
 
+    protected static ?string $modelLabel = 'Kategorię';
 
-    protected static ?string $modelLabel = "Kategorię";
-    protected static ?string $pluralModelLabel = "Kategorie";
+    protected static ?string $pluralModelLabel = 'Kategorie';
 
     public static function form(Schema $schema): Schema
     {
@@ -61,5 +61,13 @@ class CategoryResource extends Resource
             'view' => ViewCategory::route('/{record}'),
             'edit' => EditCategory::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    /** @var class-string<Model> $modelClass */
+    {
+        $modelClass = static::$model;
+
+        return (string) $modelClass::count();
     }
 }

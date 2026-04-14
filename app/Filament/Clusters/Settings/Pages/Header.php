@@ -2,11 +2,10 @@
 
 namespace App\Filament\Clusters\Settings\Pages;
 
+use App\Filament\Clusters\Settings\Pages\Schemas\HeaderForm;
 use App\Filament\Clusters\Settings\SettingsCluster;
+use App\Models\Settings;
 use BackedEnum;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Pages\Page;
@@ -21,60 +20,41 @@ class Header extends Page implements HasForms
 
     protected static ?string $cluster = SettingsCluster::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBars3;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BarsArrowUp;
+
+    protected static ?string $title = 'Nagłówek';
 
     public ?array $data = [];
-
-    public function mount(): void
-    {
-        $this->form->fill([
-            'logo' => null,
-            'menu' => [],
-        ]);
-    }
 
     public function form(Schema $form): Schema
     {
         return $form
             ->statePath('data')
-            ->schema([
-                FileUpload::make('logo')
-                    ->image()
-                    ->disk('public')
-                    ->required(),
+            ->schema(HeaderForm::getSchema());
+    }
 
-                Repeater::make('menu')
-                    ->label('Menu Links')
-                    ->schema([
-                        TextInput::make('label')
-                            ->required(),
+    public function mount(): void
+    {
+        $settings = Settings::where('name', 'header')->first();
 
-                        TextInput::make('url')
-                            ->url()
-                            ->required(),
-
-                        Repeater::make('children')
-                            ->label('Sub Links')
-                            ->schema([
-                                TextInput::make('label')->required(),
-                                TextInput::make('url')->url()->required(),
-                                Repeater::make('children')
-                                    ->label('Sub Sub Links')
-                                    ->schema([
-                                        TextInput::make('label')->required(),
-                                        TextInput::make('url')->url()->required(),
-                                    ])
-                                    ->collapsible(),
-                            ])
-                            ->collapsible(),
-                    ])
-                    ->collapsible()
-                    ->default([]),
-            ]);
+        $this->form->fill([
+            'logo' => $settings?->logo,
+            'menu' => $settings->content['menu'] ?? [],
+        ]);
     }
 
     public function save(): void
     {
-        // TODO
+        $data = $this->form->getState();
+
+        Settings::updateOrCreate(
+            ['name' => 'header'],
+            [
+                'logo' => $data['logo'],
+                'content' => [
+                    'menu' => $data['menu'],
+                ],
+            ]
+        );
     }
 }

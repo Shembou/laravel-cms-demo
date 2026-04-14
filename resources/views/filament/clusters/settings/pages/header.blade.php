@@ -2,6 +2,6 @@
     {{ $this->form }}
 
     <x-filament::button wire:click="save">
-        Save
+        Zapisz
     </x-filament::button>
 </x-filament-panels::page>

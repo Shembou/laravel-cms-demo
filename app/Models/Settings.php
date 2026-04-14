@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use Database\Factories\HeaderFactory;
+use Database\Factories\SettingsFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Header extends Model
+class Settings extends Model
 {
-    /** @use HasFactory<HeaderFactory> */
+    /** @use HasFactory<SettingsFactory> */
     use HasFactory;
 
-    protected $table = 'header';
+    protected $table = 'settings';
 
     protected $fillable = [
+        'name',
         'logo',
         'content',
     ];

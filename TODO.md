@@ -1,10 +1,6 @@
 # TODO
 
-## Move page Header and Footer to metadata model. 
 
-## move header form to separate file.
-## Add metadata to website.
-## Improve the default look of all the infolists, tables, and forms
 ## Create sample seeders
 ## Create sample blog
 ## Create more sections for demo showcase
@@ -22,6 +18,10 @@
 ## Filament base setup.
 ## Database base setup.
 ## Model base setup.
+## move header form to separate file.
+## Add metadata to website.
+## Improve the default look of all the infolists, tables, and forms
+## Move page Header and Footer to metadata model. 
 
 # Dropped
 ## Add header to website in filamentphp

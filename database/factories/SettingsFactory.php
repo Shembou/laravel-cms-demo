@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Header;
+use App\Models\Settings;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Header>
+ * @extends Factory<Settings>
  */
-class HeaderFactory extends Factory
+class SettingsFactory extends Factory
 {
     /**
      * Define the model's default state.
